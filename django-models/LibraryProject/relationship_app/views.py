@@ -7,6 +7,9 @@ from .models import Library
 from django.contrib.auth.decorators import login_required, user_passes_test
 from django.shortcuts import render
 
+from django.contrib.auth.decorators import permission_required
+
+
 # Class-Based View: Display library detail
 class LibraryDetailView(DetailView):
     model = Library
