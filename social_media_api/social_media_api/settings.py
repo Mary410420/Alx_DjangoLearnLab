@@ -151,3 +151,7 @@ SECURE_SSL_REDIRECT = True  # Redirect all HTTP to HTTPS
 
 # Port for local or production deployment (Heroku provides PORT in env)
 PORT = int(os.environ.get('PORT', 8000))  # default to 8000 if not set
+
+# Static files configuration
+STATIC_URL = '/static/'
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')  # where collectstatic will gather files
