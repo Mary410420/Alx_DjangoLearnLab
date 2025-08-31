@@ -98,3 +98,15 @@ Invoke-RestMethod -Method PUT `
   -Uri "http://127.0.0.1:8000/api/accounts/profile/" `
   -Headers @{ "Content-Type" = "application/json"; "Authorization" = "Token YOUR_TOKEN_HERE" } `
   -Body '{"bio": "Hello world!", "email": "newemail@example.com"}'
+
+Example Post request (PowerShell):
+Invoke-RestMethod -Method POST `
+  -Uri "http://127.0.0.1:8000/api/posts/" `
+  -Headers @{ "Content-Type" = "application/json"; "Authorization" = "Token YOUR_TOKEN_HERE" } `
+  -Body '{"title": "My First Post", "content": "Hello world!"}'
+
+Example Comment request:
+Invoke-RestMethod -Method POST `
+  -Uri "http://127.0.0.1:8000/api/comments/" `
+  -Headers @{ "Content-Type" = "application/json"; "Authorization" = "Token YOUR_TOKEN_HERE" } `
+  -Body '{"post": 1, "content": "Great post!"}'
