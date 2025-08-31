@@ -1,8 +1,8 @@
-from rest_framework import viewsets, permissions, filters, status
+from rest_framework import viewsets, permissions, filters, status, generics
 from rest_framework.decorators import api_view, permission_classes, action
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
-from django.shortcuts import get_object_or_404
+
 
 from .models import Post, Comment, Like
 from .serializers import PostSerializer, CommentSerializer
@@ -30,7 +30,7 @@ class PostViewSet(viewsets.ModelViewSet):
     # Like a post
     @action(detail=True, methods=['POST'], permission_classes=[IsAuthenticated])
     def like(self, request, pk=None):
-        post = get_object_or_404(Post, pk=pk)
+        post = generics.get_object_or_404(Post, pk=pk)
         like, created = Like.objects.get_or_create(user=request.user, post=post)
         if not created:
             return Response({'detail': 'Already liked'}, status=status.HTTP_400_BAD_REQUEST)
@@ -47,7 +47,7 @@ class PostViewSet(viewsets.ModelViewSet):
     # Unlike a post
     @action(detail=True, methods=['POST'], permission_classes=[IsAuthenticated])
     def unlike(self, request, pk=None):
-        post = get_object_or_404(Post, pk=pk)
+        post = generics.get_object_or_404(Post, pk=pk)
         deleted, _ = Like.objects.filter(user=request.user, post=post).delete()
         if deleted:
             return Response({'detail': 'Post unliked'}, status=status.HTTP_200_OK)
