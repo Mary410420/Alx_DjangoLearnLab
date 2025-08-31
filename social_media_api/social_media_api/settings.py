@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-0+000kojpc8c8chf83s5i59#)6cpcm5x&#807o#arc6+usju(q
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['maryolu.herokuapp.com']
 
 AUTH_USER_MODEL = 'accounts.CustomUser'
 
@@ -141,3 +141,8 @@ STATIC_URL = 'static/'
 # https://docs.djangoproject.com/en/5.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+# Production Security Settings
+SECURE_BROWSER_XSS_FILTER = True
+X_FRAME_OPTIONS = 'DENY'
+SECURE_SSL_REDIRECT = True  # Redirect all HTTP to HTTPS
